@@ -1,0 +1,6 @@
+---
+options:
+  content: "/www/dashboard/content"
+links:
+  - title: Some link
+  - title: Some other link
