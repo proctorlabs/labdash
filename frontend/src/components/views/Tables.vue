@@ -265,17 +265,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
-// Require needed datatables modules
-require('datatables.net')
-require('datatables.net-bs')
-
 export default {
-  name: 'Tables',
-  mounted() {
-    this.$nextTick(() => {
-      $('#example1').DataTable()
-    })
-  }
+  name: 'Tables'
 }
 </script>

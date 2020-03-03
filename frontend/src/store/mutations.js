@@ -10,5 +10,8 @@ export default {
   },
   SET_TOKEN(state, token) {
     state.token = token
+  },
+  UPDATE_MENU(state, menu) {
+    state.menu = menu
   }
 }

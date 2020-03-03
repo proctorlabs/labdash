@@ -1,6 +1,2 @@
-content
-frontend
-nginx
-service
 .git
-node_modules
+*/node_modules

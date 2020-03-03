@@ -3,5 +3,6 @@ export default {
   searching: '',
   serverURI: '/',
   user: null,
-  token: null
+  token: null,
+  menu: []
 }

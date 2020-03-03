@@ -96,9 +96,7 @@ RUN mkdir -p /www && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /build/bin /
-
 COPY nginx /etc/nginx
-COPY content /www/dashboard/content
 COPY service /www/dashboard/service
 
 CMD ["nginx"]

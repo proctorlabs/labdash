@@ -6,6 +6,14 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    menu() {
+      return this.$store.state.menu
+    }
+  },
+  created() {
+    this.$store.dispatch('loadMenu')
+  }
 }
 </script>

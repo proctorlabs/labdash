@@ -16,13 +16,8 @@ r:match({
             local links = json.decode(dashboard:get("links"))
             template.render("/index.html", { message = links })
         end,
-        ["/hello"]       = function(params) ngx.print("someone said hello") end,
-        ["/hello/:name"] = function(params) ngx.print("hello, " .. params.name) end,
-        ["/hello2"]      = function(params) ngx.print(json.encode(val)) end
-    },
-    POST = {
-        ["/app/:id/comments"] = function(params)
-            ngx.print("comment " .. params.comment .. " created on app " .. params.id)
+        ["/api/links"] = function(params) 
+            ngx.print(dashboard:get("links"))
         end
     }
 })
@@ -34,9 +29,5 @@ local ok, errmsg = r:execute(
 )
 
 if not ok then
-    if ngx.var.request_uri:match("[.]html$") then
-        ngx.exec("@404")
-    else
-        ngx.exec("@fallback")
-    end
+    ngx.exec("@fallback")
 end

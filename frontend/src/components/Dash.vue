@@ -25,6 +25,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .content-wrapper {
   background: #181a1b;

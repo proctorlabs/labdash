@@ -15,5 +15,8 @@ export default {
 
     var url = config.serverURI + uri
     return axios({ method, url, data })
+  },
+  menu() {
+    return this.request('GET', '/static/menu.json')
   }
 }
