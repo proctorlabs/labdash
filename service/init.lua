@@ -9,9 +9,9 @@ local text = file:read("*a")
 file.close()
 
 local cfg = yaml.load(text)
-local links = cfg["links"]
+local menu = cfg["menu"]
 local content_root = cfg["options"]["content"]
 
 local dashboard = ngx.shared.dashboard
-dashboard:set("links", json.encode(links))
+dashboard:set("menu", json.encode(menu))
 dashboard:set("content_root", content_root)

@@ -8,25 +8,25 @@
     <router-link tag="li" class="nav-item" to="/">
       <a class="nav-link">
         <i class="nav-icon fa fa-desktop"></i>
-        <p class="page">Dashboard</p>
+        <p class="page">Overview</p>
       </a>
     </router-link>
     <router-link tag="li" class="nav-item" to="/dddd">
       <a class="nav-link">
-        <i class="nav-icon fa fa-desktop"></i>
+        <i class="nav-icon fa fa-question"></i>
         <p>Notfound</p>
       </a>
     </router-link>
-    <router-link tag="li" class="nav-item" to="/login">
+    <router-link tag="li" class="nav-item" to="/dash/login">
       <a class="nav-link">
-        <i class="nav-icon fa fa-desktop"></i>
+        <i class="nav-icon fa fa-user"></i>
         <p>Login</p>
       </a>
     </router-link>
-    <router-link tag="li" class="nav-item" to="/setting">
+    <router-link tag="li" class="nav-item" to="/dash/settings">
       <a class="nav-link">
-        <i class="nav-icon fa fa-desktop"></i>
-        <p>Setting</p>
+        <i class="nav-icon fa fa-tools"></i>
+        <p>Settings</p>
       </a>
     </router-link>
     <router-link

@@ -1,12 +1,18 @@
 <template>
   <section class="content">
-    <iframe id="window" :src="detail.url"></iframe>
+    <iframe id="window" :src="detail.url" v-if="detail"></iframe>
+    <not-found v-else />
   </section>
 </template>
 
 <script>
+import NotFound from './404'
+
 export default {
   name: 'Dashboard',
+  components: {
+    NotFound
+  },
   props: {
     site: {
       type: String,

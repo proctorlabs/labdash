@@ -2,13 +2,9 @@
   <div class="sidebar-wrapper">
     <aside class="main-sidebar sidebar-dark-primary">
       <a href="#/" class="brand-link">
-        <img
-          src="static/img/AdminLTELogo.png"
-          alt="AdminLTE Logo"
-          class="brand-image img-circle elevation-3"
-          style="opacity: .8"
-        />
-        <span class="brand-text font-weight-light">Home Dashboard</span>
+        <span class="brand-text font-weight-light">
+          <i class="fa fa-home"></i> Home Dashboard
+        </span>
       </a>
 
       <div class="sidebar">
@@ -28,6 +24,12 @@ export default {
   components: { SidebarMenu }
 }
 </script>
+
+<style scoped>
+.brand-link {
+  text-align: center;
+}
+</style>
 
 <style>
 .sidebar-mini.sidebar-collapse .main-sidebar,

@@ -1,0 +1,27 @@
+version: '3.7'
+networks:
+  dash-dev:
+services:
+  vue.server:
+    container_name: vue
+    entrypoint: ''
+    working_dir: '/build'
+    command: 'npx vue-cli-service --host 0.0.0.0 serve'
+    build:
+      context: '.'
+      dockerfile: vue.dockerfile
+    networks:
+      - dash-dev
+    volumes:
+      - './frontend:/build'
+  nginx.server:
+    container_name: nginx
+    build: .
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - dash-dev
+    volumes:
+      - './util/dashboard.conf:/etc/nginx/conf.d/dashboard.conf:ro'
+      - './util/dashboard.yml:/etc/nginx/dashboard.yml:ro'

@@ -1,0 +1,8 @@
+---
+options:
+  content: '/www/dashboard/content'
+menu:
+  items:
+    'Some Entry':
+      url: 'https://cli.vuejs.org/guide/html-and-static-assets.html#relative-path-imports'
+      icon: fa-car

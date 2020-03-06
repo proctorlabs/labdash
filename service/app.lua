@@ -12,12 +12,9 @@ local val = {
 
 r:match({
     GET = {
-        ["/"] = function(params)
-            local links = json.decode(dashboard:get("links"))
-            template.render("/index.html", { message = links })
-        end,
-        ["/api/links"] = function(params) 
-            ngx.print(dashboard:get("links"))
+        ["/api/menu"] = function(params) 
+            ngx.header["content-type"] = 'application/json'
+            ngx.print(dashboard:get("menu"))
         end
     }
 })

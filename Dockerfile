@@ -85,6 +85,14 @@ RUN apt-get update && apt-get install -y rsync && \
     luarocks --server=http://rocks.moonscript.org install lyaml --local && \
     rsync -av /root/.luarocks/ /build/bin/usr/local/openresty/luajit/
 
+FROM node:lts-alpine as ui-build
+
+RUN npm install -g @vue/cli && \
+    yarn global add @vue/cli-service-global
+
+COPY frontend /build
+RUN cd /build && npm install && npm run build
+
 FROM debian:buster-slim
 ENV PATH=/usr/local/openresty/bin:$PATH
 RUN mkdir -p /www && \
@@ -96,6 +104,7 @@ RUN mkdir -p /www && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /build/bin /
+COPY --from=ui-build /build/dist /www/dashboard/content
 COPY nginx /etc/nginx
 COPY service /www/dashboard/service
 

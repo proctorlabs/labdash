@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
   ) {
     window.console.log('Not authenticated')
     next({
-      path: '/login',
+      path: '/dash/login',
       query: { redirect: to.fullPath }
     })
   } else {

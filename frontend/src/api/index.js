@@ -17,6 +17,6 @@ export default {
     return axios({ method, url, data })
   },
   menu() {
-    return this.request('GET', '/static/menu.json')
+    return this.request('GET', '/api/menu')
   }
 }
