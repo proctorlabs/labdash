@@ -26,4 +26,4 @@ vue:
         -v $PWD:/work \
         --net host \
         -w /work/frontend --entrypoint '' \
-        node:lts-alpine npm run dev
+        node:lts-alpine npm run serve

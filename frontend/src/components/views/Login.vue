@@ -43,19 +43,10 @@
 </template>
 
 <script>
-import api from '../api'
+import api from '../../api'
 
 export default {
   name: 'Login',
-  data(router) {
-    return {
-      section: 'Login',
-      loading: '',
-      username: '',
-      password: '',
-      response: ''
-    }
-  },
   methods: {
     checkCreds() {
       const { username, password } = this

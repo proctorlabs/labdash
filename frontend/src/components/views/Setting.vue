@@ -137,11 +137,6 @@ export default {
     datetime() {
       return new Date()
     }
-  },
-  methods: {
-    clearInput(vueModel) {
-      vueModel = ''
-    }
   }
 }
 </script>

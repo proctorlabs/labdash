@@ -1,52 +1,32 @@
-import DashView from './components/Dash.vue'
-import LoginView from './components/Login.vue'
-import NotFoundView from './components/404.vue'
-
-// Import Views - Dash
+import LoginView from './components/views/Login.vue'
+import NotFoundView from './components/views/404.vue'
 import DashboardView from './components/views/Overview.vue'
-import TablesView from './components/views/Tables.vue'
 import SettingView from './components/views/Setting.vue'
-import ReposView from './components/views/Repos.vue'
+import FrameView from './components/views/Frame.vue'
 
-// Routes
 const routes = [
   {
-    path: '/login',
+    path: '/dash/login',
     component: LoginView
   },
   {
-    path: '/',
-    component: DashView,
-    children: [
-      {
-        path: 'dashboard',
-        alias: '',
-        component: DashboardView,
-        name: 'Dashboard',
-        meta: { description: 'Overview of environment' }
-      },
-      {
-        path: 'tables',
-        component: TablesView,
-        name: 'Tables',
-        meta: { description: 'Simple and advance table in CoPilot' }
-      },
-      {
-        path: 'setting',
-        component: SettingView,
-        name: 'Settings',
-        meta: { description: 'User settings page' }
-      },
-      {
-        path: 'repos',
-        component: ReposView,
-        name: 'Repository',
-        meta: { description: 'List of popular javascript repos' }
-      }
-    ]
+    path: '/dash/overview',
+    alias: '',
+    component: DashboardView,
+    name: 'Dashboard'
   },
   {
-    // not found handler
+    path: '/dash/settings',
+    component: SettingView,
+    name: 'Settings'
+  },
+  {
+    path: '/:site',
+    component: FrameView,
+    name: 'Frame',
+    props: true
+  },
+  {
     path: '*',
     component: NotFoundView
   }

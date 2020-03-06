@@ -1,13 +1,23 @@
 <template>
   <section class="content">
-    <iframe id="window" src="https://apps.proctor.id"></iframe>
+    <iframe id="window" :src="detail.url"></iframe>
   </section>
 </template>
 
 <script>
 export default {
   name: 'Dashboard',
-  props: ['site']
+  props: {
+    site: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    detail() {
+      return this.$store.state.menu.items[this.site]
+    }
+  }
 }
 </script>
 

@@ -5,25 +5,45 @@
     role="menu"
     data-accordion="false"
   >
-    <router-link tag="li" class="nav-item nav-link" to="/">
-      <a>
+    <router-link tag="li" class="nav-item" to="/">
+      <a class="nav-link">
         <i class="nav-icon fa fa-desktop"></i>
-        <span class="page">Dashboard</span>
+        <p class="page">Dashboard</p>
       </a>
     </router-link>
-    <li
-      class="nav-item nav-link"
-      to="/"
-      v-for="i in menu.items"
-      v-bind:key="i.url"
-    >
-      <a :href="i.url">
-        <i :class="['nav-icon', 'fa', i.icon]"></i>
-        <span class="page">{{ i.name }}</span>
+    <router-link tag="li" class="nav-item" to="/dddd">
+      <a class="nav-link">
+        <i class="nav-icon fa fa-desktop"></i>
+        <p>Notfound</p>
       </a>
-    </li>
+    </router-link>
+    <router-link tag="li" class="nav-item" to="/login">
+      <a class="nav-link">
+        <i class="nav-icon fa fa-desktop"></i>
+        <p>Login</p>
+      </a>
+    </router-link>
+    <router-link tag="li" class="nav-item" to="/setting">
+      <a class="nav-link">
+        <i class="nav-icon fa fa-desktop"></i>
+        <p>Setting</p>
+      </a>
+    </router-link>
+    <router-link
+      tag="li"
+      class="nav-item"
+      :to="'/' + k"
+      v-for="(i, k) in menu.items"
+      v-bind:key="k"
+    >
+      <a class="nav-link">
+        <i :class="['nav-icon', 'fa', i.icon]"></i>
+        <p class="page">{{ k }}</p>
+      </a>
+    </router-link>
   </ul>
 </template>
+
 <script>
 export default {
   name: 'SidebarMenu',
