@@ -2,10 +2,8 @@
   <div id="app" class="wrapper">
     <sidebar />
     <div class="content-wrapper">
-      <div class="content">
-        <div class="container-fluid">
-          <router-view></router-view>
-        </div>
+      <div class="container-fluid parent-view">
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -37,11 +35,11 @@ export default {
 }
 
 .content {
-  padding: 0 0;
+  padding: 0 0 0 0;
 }
 
-.container-fluid {
-  padding-left: 0;
-  padding-right: 0;
+.parent-view {
+  padding: 0 0 0 0;
+  height: 100vmin;
 }
 </style>

@@ -79,10 +79,13 @@ RUN mkdir -p /build/luajit /build/luarocks && \
     ln -s /usr/local/bin/luajit-2.1.0-beta3 /usr/local/bin/luajit && \
     cd /build/luarocks && ./configure && make && make install
 
-RUN apt-get update && apt-get install -y rsync && \
+RUN mkdir -p 'lualdap' && curl -sL "https://github.com/lualdap/lualdap/archive/v1.2.5.tar.gz" | tar -zx -C 'lualdap' --strip-components 1 && \
+    apt-get update && apt-get install -y rsync libldap2-dev && \
     luarocks install lua-resty-template --local && \
     luarocks install router --local && \
+    luarocks install lua-resty-session --local && \
     luarocks --server=http://rocks.moonscript.org install lyaml --local && \
+    (cd lualdap && luarocks build --local) && \
     rsync -av /root/.luarocks/ /build/bin/usr/local/openresty/luajit/
 
 FROM node:lts-alpine as ui-build
@@ -100,12 +103,13 @@ RUN mkdir -p /www && \
     libpq5 \
     openssl \
     libyaml-0-2 \
+    libldap-2.4-2 \
     libperl5.28 && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /build/bin /
 COPY --from=ui-build /build/dist /www/dashboard/content
 COPY nginx /etc/nginx
-COPY service /www/dashboard/service
+COPY lualib /usr/local/openresty/site/lualib
 
 CMD ["nginx"]

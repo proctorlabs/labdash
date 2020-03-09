@@ -1,8 +1,13 @@
 ---
-options:
-  content: '/www/dashboard/content'
+auth:
+  type: ldap
+  secret: '623q4hR325t36VsCD3g567922IC0073T'
+  uri: 'ldap://ldap.example.com'
+  base_dn: 'ou=users,dc=example,dc=com'
+  search_attr: 'cn'
+
 menu:
   items:
     'Some Entry':
-      url: 'https://cli.vuejs.org/guide/html-and-static-assets.html#relative-path-imports'
+      url: 'https://cli.vuejs.org/guide/html-and-static-assets.html'
       icon: fa-car

@@ -1,8 +1,6 @@
 <template>
-  <section class="content">
-    <iframe id="window" :src="detail.url" v-if="detail"></iframe>
-    <not-found v-else />
-  </section>
+  <iframe id="window" :src="detail.url" v-if="detail"></iframe>
+  <not-found v-else />
 </template>
 
 <script>

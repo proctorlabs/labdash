@@ -1,14 +1,14 @@
 build:
-    docker build -t resty .
+    docker-compose build
 
-run: build
-    docker run --name resty -p 80:80 -p 443:443 --rm -it resty
+run:
+    docker-compose up --build --abort-on-container-exit
 
 shell: build
     docker run --name resty -p 80:80 -p 443:443 --rm -it resty /bin/bash
 
 watch:
-    watchexec -w content -w nginx -w service -c -r just run
+    watchexec -w frontend -w nginx -w service -c -r just run
 
 vue-shell:
     docker build -t vuecli -f vue.dockerfile .

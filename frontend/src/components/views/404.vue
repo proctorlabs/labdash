@@ -1,13 +1,25 @@
 <template>
-  <div id="notFound">
-    <!-- <img src="/static/img/logo.png" class="center-block logo" /> -->
-
-    <div class="text-center col-sm-12">
-      <h1>You are lost.</h1>
-      <h4>This page doesn't exist.</h4>
-      <router-link to="/" class="vertical-5p lead">Take me home.</router-link>
+  <section
+    class="container-fluid h-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="col-sm-4 card bg-gradient-dark">
+      <div class="card-header">
+        <h1 class="card-title text-center text-xl col-sm-12">
+          You are lost.
+        </h1>
+      </div>
+      <div class="card-body text-center col-sm-12">
+        <h4>
+          This page doesn't exist.
+        </h4>
+      </div>
+      <div class="card-footer text-right col-sm-12">
+        <router-link to="/" tag="a" class="btn btn-secondary">
+          Take me home.
+        </router-link>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

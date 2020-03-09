@@ -1,11 +1,12 @@
 <template>
   <div class="sidebar-wrapper">
     <aside class="main-sidebar sidebar-dark-primary">
-      <a href="#/" class="brand-link">
+      <router-link to="/" class="brand-link">
         <span class="brand-text font-weight-light">
-          <i class="fa fa-home"></i> Home Dashboard
+          <i class="fa fa-home"></i>
+          Home Dashboard
         </span>
-      </a>
+      </router-link>
 
       <div class="sidebar">
         <nav class="mt-2">

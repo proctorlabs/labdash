@@ -1,45 +1,47 @@
 <template>
-  <div id="login">
-    <img src="/static/img/logo.png" class="center-block logo" />
+  <section
+    class="container-fluid h-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="card bg-gradient-dark text-center w-25 p-3">
+      <div class="card-header">
+        <span class="font-weight-bold">System Login</span>
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="checkCreds">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-user"></i>
+              </span>
+            </div>
+            <input
+              class="form-control"
+              name="username"
+              placeholder="Username"
+              type="text"
+              v-model="username"
+            />
+          </div>
 
-    <div class="text-center col-sm-12">
-      <!-- login form -->
-      <form @submit.prevent="checkCreds">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-          <input
-            class="form-control"
-            name="username"
-            placeholder="Username"
-            type="text"
-            v-model="username"
-          />
-        </div>
-
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input
-            class="form-control"
-            name="password"
-            placeholder="Password"
-            type="password"
-            v-model="password"
-          />
-        </div>
-        <button
-          type="submit"
-          v-bind:class="'btn btn-primary btn-lg ' + loading"
-        >
-          Submit
-        </button>
-      </form>
-
-      <!-- errors -->
-      <div v-if="response" class="text-red">
-        <p class="vertical-5p lead">{{ response }}</p>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+            </div>
+            <input
+              class="form-control"
+              name="password"
+              placeholder="Password"
+              type="password"
+              v-model="password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -57,7 +59,7 @@ export default {
 
       /* Making API call to authenticate a user */
       api
-        .request('post', '/login', { username, password })
+        .request('post', '/api/session', { username, password })
         .then(response => {
           this.toggleLoading()
 

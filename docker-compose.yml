@@ -25,3 +25,4 @@ services:
     volumes:
       - './util/dashboard.conf:/etc/nginx/conf.d/dashboard.conf:ro'
       - './util/dashboard.yml:/etc/nginx/dashboard.yml:ro'
+      - './lualib:/usr/local/openresty/site/lualib:ro'
