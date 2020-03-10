@@ -1,14 +1,9 @@
-import LoginView from './components/views/Login.vue'
 import NotFoundView from './components/views/404.vue'
 import DashboardView from './components/views/Overview.vue'
 import SettingView from './components/views/Setting.vue'
 import FrameView from './components/views/Frame.vue'
 
 const routes = [
-  {
-    path: '/dash/login',
-    component: LoginView
-  },
   {
     path: '/dash/overview',
     alias: '',

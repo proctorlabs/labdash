@@ -1,5 +1,4 @@
 import axios from 'axios'
-import config from '../config'
 
 export default {
   request(method, uri, data = null) {
@@ -13,10 +12,22 @@ export default {
       return
     }
 
-    var url = config.serverURI + uri
+    var url = uri
     return axios({ method, url, data })
   },
   menu() {
     return this.request('GET', '/api/menu')
+  },
+  login(username, password) {
+    return this.request('POST', '/api/session', {
+      username: username,
+      password: password
+    })
+  },
+  logout() {
+    return this.request('DELETE', '/api/session')
+  },
+  getSession() {
+    return this.request('GET', '/api/session')
   }
 }

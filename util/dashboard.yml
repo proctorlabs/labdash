@@ -1,13 +1,16 @@
 ---
 auth:
   type: ldap
-  secret: '623q4hR325t36VsCD3g567922IC0073T'
-  uri: 'ldap://ldap.example.com'
-  base_dn: 'ou=users,dc=example,dc=com'
-  search_attr: 'cn'
+  secret: "623q4hR325t36VsCD3g567922IC0073T"
+  uri: "ldap://ldap.proctor.id"
+  base_dn: "ou=users,dc=proctor,dc=id"
+  search_attr: "cn"
 
 menu:
   items:
-    'Some Entry':
-      url: 'https://cli.vuejs.org/guide/html-and-static-assets.html'
+    "Vue CLI":
+      url: "https://cli.vuejs.org/guide/html-and-static-assets.html"
       icon: fa-car
+    "Openresty":
+      url: "https://github.com/openresty/lua-nginx-module"
+      icon: fa-wrench

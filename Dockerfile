@@ -110,6 +110,8 @@ RUN mkdir -p /www && \
 COPY --from=build /build/bin /
 COPY --from=ui-build /build/dist /www/dashboard/content
 COPY nginx /etc/nginx
-COPY lualib /usr/local/openresty/site/lualib
+
+COPY backend/lualib /usr/local/openresty/site/lualib
+COPY backend/site /usr/local/openresty/nginx
 
 CMD ["nginx"]

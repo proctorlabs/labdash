@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-wrapper">
-    <aside class="main-sidebar sidebar-dark-primary">
+    <aside class="main-sidebar sidebar-dark-primary h-100">
       <router-link to="/" class="brand-link">
         <span class="brand-text font-weight-light">
           <i class="fa fa-home"></i>
@@ -8,10 +8,26 @@
         </span>
       </router-link>
 
-      <div class="sidebar">
+      <div class="sidebar flex-column">
         <nav class="mt-2">
           <sidebar-menu></sidebar-menu>
         </nav>
+
+        <div class="sidebar-bottom-rel">
+          <ul
+            class="nav nav-pills nav-sidebar flex-column"
+            data-widget="treeview"
+            role="menu"
+            data-accordion="false"
+          >
+            <li class="nav-item">
+              <a class="nav-link method" @click="logout">
+                <i class="nav-icon fa fa-door-open"></i>
+                <p>Sign Out</p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </aside>
   </div>
@@ -22,13 +38,29 @@ import SidebarMenu from './SidebarMenu'
 
 export default {
   name: 'Sidebar',
-  components: { SidebarMenu }
+  components: { SidebarMenu },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 
 <style scoped>
 .brand-link {
   text-align: center;
+}
+
+.method {
+  cursor: pointer;
+}
+
+.sidebar-bottom-rel {
+  position: absolute;
+  bottom: 0.3rem;
+  left: 0.3rem;
+  width: 15rem;
 }
 </style>
 

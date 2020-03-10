@@ -1,9 +1,21 @@
 <template>
   <div id="app" class="wrapper">
-    <sidebar />
-    <div class="content-wrapper">
-      <div class="container-fluid parent-view">
+    <sidebar v-if="$store.getters.loggedIn" />
+    <div class="content-wrapper" v-if="$store.getters.loggedIn">
+      <div
+        class="container-fluid parent-view"
+        style="background-image: url('/images/random');background-size: cover;"
+      >
         <router-view></router-view>
+      </div>
+    </div>
+    <div
+      class="content-wrapper"
+      style="margin-left: 0 !important;"
+      v-else-if="$store.state.initialized"
+    >
+      <div class="container-fluid parent-view">
+        <login />
       </div>
     </div>
   </div>
@@ -11,11 +23,13 @@
 
 <script>
 import Sidebar from './layout/Sidebar'
+import Login from './views/Login'
 
 export default {
   name: 'App',
   components: {
-    Sidebar
+    Sidebar,
+    Login
   },
   computed: {
     menu() {
@@ -23,7 +37,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('loadMenu')
+    this.$store.dispatch('initialize')
   }
 }
 </script>

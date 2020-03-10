@@ -1,20 +1,19 @@
 local json = require "cjson"
-local router = require 'router'
-local r = router.new()
-local dashboard = ngx.shared.dashboard
-
+local router = require "router"
 local auth = require "api.session"
-auth:init(dashboard:get("auth"))
+local r = router.new()
 
 r:match({
     GET = {
         ["/api/menu"] = function(params)
-            ngx.print(dashboard:get("menu"))
+            ngx.print(json.encode(labdash.menu))
         end,
+
         ["/api/session"] = function(params)
             auth:validate()
         end
     },
+
     POST = {
         ["/api/session"] = function(params)
             ngx.req.read_body()
@@ -22,6 +21,7 @@ r:match({
             auth:login(req['username'], req['password'])
         end
     },
+
     DELETE = {
         ["/api/session"] = function(params)
             auth:logout()
@@ -38,5 +38,6 @@ local ok, errmsg = r:execute(
 )
 
 if not ok then
-    ngx.print("{\"error\": \"Unexpected request\"}")
+    ngx.status = 400
+    ngx.print("{\"error\": \"Bad request\"}")
 end
