@@ -84,6 +84,7 @@ RUN mkdir -p 'lualdap' && curl -sL "https://github.com/lualdap/lualdap/archive/v
     luarocks install lua-resty-template --local && \
     luarocks install router --local && \
     luarocks install lua-resty-session --local && \
+    luarocks install lua-resty-http --local && \
     luarocks --server=http://rocks.moonscript.org install lyaml --local && \
     (cd lualdap && luarocks build --local) && \
     rsync -av /root/.luarocks/ /build/bin/usr/local/openresty/luajit/

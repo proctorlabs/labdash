@@ -6,6 +6,9 @@ auth:
   base_dn: "ou=users,dc=proctor,dc=id"
   search_attr: "cn"
 
+sessions:
+  domain: "localhost"
+
 menu:
   items:
     "Vue CLI":

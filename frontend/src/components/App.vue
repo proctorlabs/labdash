@@ -4,7 +4,7 @@
     <div class="content-wrapper" v-if="$store.getters.loggedIn">
       <div
         class="container-fluid parent-view"
-        style="background-image: url('/images/random');background-size: cover;"
+        style="background-image: url('/api/image');background-size: cover;"
       >
         <router-view></router-view>
       </div>

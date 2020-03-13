@@ -6,7 +6,7 @@ session.__index = session
 
 local function new()
     local s = sessions.new(labdash.session_config)
-    s.storage = require "filestore".new(s)
+    s.storage = require "plugins/filestore".new(s)
     return s
 end
 
@@ -40,6 +40,7 @@ end
 function session:validate()
     local s = new():open()
     if s.present and s.data.user then
+        s:regenerate()
         ngx.print(json.encode(s.data))
     else
         ngx.status = 403
