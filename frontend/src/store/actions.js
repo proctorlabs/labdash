@@ -1,41 +1,26 @@
 import api from '../api'
 
 export default {
-  loadMenu({ commit }) {
-    api
-      .menu()
-      .then(result => {
-        commit('UPDATE_MENU', result.data)
-      })
-      .catch(error => {
-        throw new Error(`API ${error}`)
-      })
+  async loadMenu({ commit }) {
+    return await api.menu().then(result => {
+      commit('UPDATE_MENU', result.data)
+    })
   },
 
-  login({ commit }, { username: username, password: password }) {
-    api
-      .login(username, password)
-      .then(() => {
-        commit('SET_USER', username)
-      })
-      .catch(error => {
-        throw new Error(`API ${error}`)
-      })
+  async login({ commit }, { username: username, password: password }) {
+    return await api.login(username, password).then(() => {
+      return commit('SET_USER', username)
+    })
   },
 
-  logout({ commit }) {
-    api
-      .logout()
-      .then(() => {
-        commit('SET_USER', null)
-      })
-      .catch(error => {
-        throw new Error(`API ${error}`)
-      })
+  async logout({ commit }) {
+    return await api.logout().then(() => {
+      commit('SET_USER', null)
+    })
   },
 
-  initialize({ commit, state }) {
-    api
+  async initialize({ commit, state }) {
+    return await api
       .getSession()
       .then(result => {
         state.initialized = true

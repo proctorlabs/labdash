@@ -11,24 +11,17 @@ import '@popperjs/core'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
-import routes from './routes'
+import router from './router'
 import store from './store'
 import AppView from './components/App.vue'
 
 Vue.use(VueRouter)
-
-var router = new VueRouter({
-  routes: routes,
-  mode: 'history',
-  linkExactActiveClass: 'active'
-})
-
 sync(store, router)
 
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
-  router: router,
-  store: store,
+  router,
+  store,
   render: h => h(AppView)
 })

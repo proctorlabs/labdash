@@ -1,19 +1,24 @@
 ---
+menu:
+  items:
+    vue:
+      type: url
+      display: VueJS
+      url: "https://cli.vuejs.org/guide/html-and-static-assets.html"
+      icon: fa:car
+
+    github:
+      type: url
+      display: Github
+      url: "https://www.github.com"
+      icon: fab:github
+      open_in: new
+
 auth:
   type: ldap
-  secret: "623q4hR325t36VsCD3g567922IC0073T"
-  uri: "ldap://ldap.proctor.id"
-  base_dn: "ou=users,dc=proctor,dc=id"
+  uri: "ldap://ldap.example.com"
+  base_dn: "ou=users,dc=example,dc=com"
   search_attr: "cn"
 
 sessions:
   domain: "localhost"
-
-menu:
-  items:
-    "Vue CLI":
-      url: "https://cli.vuejs.org/guide/html-and-static-assets.html"
-      icon: fa-car
-    "Openresty":
-      url: "https://github.com/openresty/lua-nginx-module"
-      icon: fa-wrench

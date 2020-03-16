@@ -5,24 +5,39 @@
     role="menu"
     data-accordion="false"
   >
-    <router-link tag="li" class="nav-item" to="/">
-      <a class="nav-link">
+    <li class="nav-item" to="/">
+      <router-link class="nav-link" to="/">
         <i class="nav-icon fa fa-desktop"></i>
         <p class="page">Overview</p>
-      </a>
-    </router-link>
-    <router-link
-      tag="li"
-      class="nav-item"
-      :to="'/' + k"
-      v-for="(i, k) in menu.items"
-      v-bind:key="k"
-    >
-      <a class="nav-link">
+      </router-link>
+    </li>
+    <li class="nav-item" v-for="(i, k) in menu.items" v-bind:key="k">
+      <router-link
+        class="nav-link"
+        :to="'/' + k"
+        v-bind:key="k"
+        v-if="i.open_in != 'new'"
+      >
         <i :class="['nav-icon', 'fa', i.icon]"></i>
-        <p class="page">{{ k }}</p>
+        <p>{{ i.display }}</p>
+      </router-link>
+      <a
+        class="nav-link"
+        :href="'/site/' + k + '/'"
+        target="_blank"
+        v-bind:key="k"
+        v-else
+      >
+        <i :class="['nav-icon', 'fa', i.icon]"></i>
+
+        <p>
+          {{ i.display }}
+          <span class="right badge badge-success">
+            <i class="fa fa-external-link-alt"></i>
+          </span>
+        </p>
       </a>
-    </router-link>
+    </li>
   </ul>
 </template>
 

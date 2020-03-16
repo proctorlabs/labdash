@@ -1,5 +1,5 @@
 <template>
-  <iframe id="window" :src="detail.url" v-if="detail"></iframe>
+  <iframe id="window" :src="'/site/' + site + '/'" v-if="detail"></iframe>
   <not-found v-else />
 </template>
 

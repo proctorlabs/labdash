@@ -1,3 +1,4 @@
+local util = require "util"
 local image = {}
 image.__index = image
 
@@ -14,7 +15,7 @@ function image.get()
         })
 
         if not res then
-            ngx.status = 500
+            util.fail(500, "Something broke!")
             ngx.log(ngx.WARN, err)
             return
         end

@@ -2,13 +2,18 @@ local json = require "cjson"
 local router = require "router"
 local auth = require "api.session"
 local img = require "api.image"
+local util = require "util"
+
 local r = router.new()
 
 r:match({
     GET = {
         ["/api/menu"] = function(params)
-            ngx.header["content-type"] = 'application/json'
-            ngx.print(json.encode(labdash.menu))
+            if auth:check() then
+                util.result(CFG.menu)
+            else
+                auth:validate()
+            end
         end,
 
         ["/api/session"] = function(params)
@@ -17,8 +22,11 @@ r:match({
         end,
 
         ["/api/image"] = function(params)
-            ngx.header["content-type"] = 'text/plain'
-            img.get()
+            if auth:check() then
+                img.get()
+            else
+                auth:validate()
+            end
         end
     },
 
@@ -39,14 +47,10 @@ r:match({
     }
 })
 
-local ok, errmsg = r:execute(
+local ok = r:execute(
     ngx.var.request_method,
     ngx.var.request_uri,
     ngx.req.get_uri_args()
 )
 
-if not ok then
-    ngx.header["content-type"] = 'application/json'
-    ngx.status = 400
-    ngx.print("{\"error\": \"Bad request\"}")
-end
+if not ok then util.fail(400, "Bad request") end

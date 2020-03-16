@@ -5,7 +5,7 @@
     <div class="col-sm-4 card bg-gradient-dark">
       <div class="card-header">
         <h1 class="card-title text-center text-xl col-sm-12">
-          You are lost.
+          Not Found
         </h1>
       </div>
       <div class="card-body text-center col-sm-12">

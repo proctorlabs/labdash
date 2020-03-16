@@ -81,7 +81,6 @@ RUN mkdir -p /build/luajit /build/luarocks && \
 
 RUN mkdir -p 'lualdap' && curl -sL "https://github.com/lualdap/lualdap/archive/v1.2.5.tar.gz" | tar -zx -C 'lualdap' --strip-components 1 && \
     apt-get update && apt-get install -y rsync libldap2-dev && \
-    luarocks install lua-resty-template --local && \
     luarocks install router --local && \
     luarocks install lua-resty-session --local && \
     luarocks install lua-resty-http --local && \

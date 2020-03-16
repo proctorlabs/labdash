@@ -1,25 +1,33 @@
-local json = require "cjson"
 local sessions = require "resty.session"
+local util = require "util"
 
 local session = {}
 session.__index = session
 
 local function new()
-    local s = sessions.new(labdash.session_config)
+    local s = sessions.new(CFG.session_config)
     s.storage = require "plugins/filestore".new(s)
     return s
 end
 
 function session:login(username, password)
+    if (ngx.shared.shmem:get("loginuname:" .. username) or
+        ngx.shared.shmem:get("loginip:" .. ngx.var.remote_addr)) then
+        ngx.sleep(3)
+        return util.fail(429, "Try again later")
+    end
+
+    ngx.shared.shmem:set("loginuname:" .. username, 1, 10)
+    ngx.shared.shmem:set("loginip:" .. ngx.var.remote_addr, 1, 10)
+    ngx.sleep(0.2)
     local ld = lualdap.open_simple(
-        labdash.ldap.uri,
-        labdash.ldap.search_attr .. "=" .. username .. "," .. labdash.ldap.base_dn,
+        CFG.ldap.uri,
+        CFG.ldap.search_attr .. "=" .. username .. "," .. CFG.ldap.base_dn,
         password
     )
 
     if ld == nil then
-        ngx.status = 401
-        ngx.print("{\"error\": \"Authentication failed\"}")
+        util.fail(401, "Authentication failed")
     else
         ld:close()
         local s = new():start()
@@ -41,10 +49,11 @@ function session:validate()
     local s = new():open()
     if s.present and s.data.user then
         s:regenerate()
-        ngx.print(json.encode(s.data))
+        util.result(s.data)
+        return true
     else
-        ngx.status = 403
-        ngx.print("{\"error\": \"No active session\"}")
+        util.fail(403, "Authorization required")
+        return false
     end
 end
 
