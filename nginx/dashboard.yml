@@ -1,6 +1,24 @@
 ---
-options:
-  content: '/www/dashboard/content'
-links:
-  - title: Some link
-  - title: Some other link
+menu:
+  items:
+    vue:
+      type: url
+      display: VueJS
+      url: "https://cli.vuejs.org/guide/html-and-static-assets.html"
+      icon: fa:car
+
+    github:
+      type: url
+      display: Github
+      url: "https://www.github.com"
+      icon: fab:github
+      open_in: new
+
+auth:
+  type: ldap
+  uri: "ldap://ldap.example.com"
+  base_dn: "ou=users,dc=example,dc=com"
+  search_attr: "cn"
+
+sessions:
+  domain: "localhost"
