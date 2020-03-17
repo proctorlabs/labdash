@@ -62,7 +62,7 @@ RUN mkdir -p "${DESTDIR}/usr/sbin" "${DESTDIR}/usr/lib/nginx" "${DESTDIR}/etc/ng
     --without-http_scgi_module \
     --without-http_upstream_ip_hash_module \
     --add-module=/build/nginx-module-vts \
-    --add-module=/build/ngx_http_dyups_module \
+    --add-module=/build/ngx_http_dyups_module && \
     make -j1 && \
     make install --silent
 
