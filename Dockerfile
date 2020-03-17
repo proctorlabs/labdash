@@ -63,8 +63,6 @@ RUN mkdir -p "${DESTDIR}/usr/sbin" "${DESTDIR}/usr/lib/nginx" "${DESTDIR}/etc/ng
     --without-http_upstream_ip_hash_module \
     --add-module=/build/nginx-module-vts \
     --add-module=/build/ngx_http_dyups_module \
-    --with-cc-opt='-O2 -flto -funsafe-math-optimizations -fstack-protector-strong --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2' \
-    --with-ld-opt="-Wl,-z,relro -Wl,-z,now -Wl,--as-needed -pie" && \
     make -j1 && \
     make install --silent
 
